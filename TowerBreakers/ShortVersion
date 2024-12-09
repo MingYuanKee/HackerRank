@@ -1,0 +1,57 @@
+#!/bin/python3
+
+import math
+import os
+import random
+import re
+import sys
+
+#
+# Complete the 'towerBreakers' function below.
+#
+# The function is expected to return an INTEGER.
+# The function accepts following parameters:
+#  1. INTEGER n
+#  2. INTEGER m
+#
+
+from itertools import repeat
+ 
+def towerBreakers(n, m):
+    # Write your code here
+    # m = height of tower
+    # n = number of tower
+    if m==1:
+        return 2
+    elif n==1:
+        return 1
+    elif is_even(n):
+        return 2
+    elif not is_even(n):
+        return 1
+                    
+def is_even(number):
+    if number % 2 == 0:
+        #print("even towers")
+        return True
+    else:
+        #print("odd towers")
+        return False
+
+if __name__ == '__main__':
+    fptr = open(os.environ['OUTPUT_PATH'], 'w')
+
+    t = int(input().strip())
+
+    for t_itr in range(t):
+        first_multiple_input = input().rstrip().split()
+
+        n = int(first_multiple_input[0])
+
+        m = int(first_multiple_input[1])
+
+        result = towerBreakers(n, m)
+
+        fptr.write(str(result) + '\n')
+
+    fptr.close()
