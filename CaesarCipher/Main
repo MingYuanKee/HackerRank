@@ -1,0 +1,50 @@
+#!/bin/python3
+
+import math
+import os
+import random
+import re
+import sys
+import string
+#
+# Complete the 'caesarCipher' function below.
+#
+# The function is expected to return a STRING.
+# The function accepts following parameters:
+#  1. STRING s
+#  2. INTEGER k
+#
+
+def caesarCipher(s, k):
+    # Write your code here
+    stringlist=list(s)
+    alphabet_small = list(string.ascii_lowercase)
+    alphabet_big = list(string.ascii_uppercase)
+    #print(alphabet_small)
+    for index, character in enumerate(stringlist):
+        #print(index,character)
+        if character.isalpha():
+            if character.isupper():
+                alphabetIndex=alphabet_big.index(character)
+                stringlist[index]=alphabet_big[(alphabetIndex+k)%len(alphabet_big)]
+            elif character.islower():
+                alphabetIndex=alphabet_small.index(character)
+                stringlist[index]=alphabet_small[(alphabetIndex+k)%len(alphabet_small)]
+                
+    return ''.join(stringlist)
+    
+
+if __name__ == '__main__':
+    fptr = open(os.environ['OUTPUT_PATH'], 'w')
+
+    n = int(input().strip())
+
+    s = input()
+
+    k = int(input().strip())
+
+    result = caesarCipher(s, k)
+
+    fptr.write(result + '\n')
+
+    fptr.close()
