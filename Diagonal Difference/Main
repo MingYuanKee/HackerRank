@@ -1,0 +1,67 @@
+#!/bin/python3
+
+import math
+import os
+import random
+import re
+import sys
+
+#
+# Complete the 'diagonalDifference' function below.
+#
+# The function is expected to return an INTEGER.
+# The function accepts 2D_INTEGER_ARRAY arr as parameter.
+#
+
+def diagonalDifference(arr):
+    # Write your code here
+    #rows = arr.shape[0]
+    #columns  = arr.shape[1]
+    summation=0
+    total_rows=len(arr)
+    total_columns=len(arr[0])
+    rowcount=0
+    itemcount=0
+    for row in arr:
+        rowcount+=1
+        #print(row)
+        for item in row:
+            #print(item)
+            itemcount+=1
+            if rowcount == itemcount:
+                summation=summation+arr[rowcount-1][itemcount-1]
+                print(arr[rowcount-1][itemcount-1])
+                #itemcount=0
+                break
+    rowcountb=0
+    itemcountb=0
+    summationb=0
+    for rowb in reversed(arr):
+        rowcountb+=1
+        #print(row)
+        for itemb in rowb:
+            #print(itemb)
+            itemcountb+=1
+            if rowcountb == itemcountb:
+                summationb=summationb+arr[total_rows-rowcountb][itemcountb-1]
+                print(arr[total_rows-rowcountb][itemcountb-1])
+                #itemcount=0
+                break
+    return abs(summation-summationb)
+
+
+if __name__ == '__main__':
+    fptr = open(os.environ['OUTPUT_PATH'], 'w')
+
+    n = int(input().strip())
+
+    arr = []
+
+    for _ in range(n):
+        arr.append(list(map(int, input().rstrip().split())))
+
+    result = diagonalDifference(arr)
+
+    fptr.write(str(result) + '\n')
+
+    fptr.close()
