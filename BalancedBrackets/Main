@@ -1,0 +1,79 @@
+#!/bin/python3
+
+import math
+import os
+import random
+import re
+import sys
+
+#
+# Complete the 'isBalanced' function below.
+#
+# The function is expected to return a STRING.
+# The function accepts STRING s as parameter.
+#
+
+def isBalanced(s):
+    # Write your code here
+    #type 1=(), type 2=[], type 3={}
+
+    if len(s)% 2 == 0:
+        if s[0]=='(' or s[0]=='[' or s[0]=='{':
+            if s[-1]==')' or s[-1]==']' or s[-1]=='}':
+                #type1OpenCount,type1CloseCount=0,0
+                #type2OpenCount,type2CloseCount=0,0
+                #type3OpenCount,type3CloseCount=0,0
+                counter,lastOpened=0,['-']
+                haveError=False
+                while counter<len(s):
+                    if s[counter]=='(' or s[counter]=='[' or s[counter]=='{':
+                        lastOpened.append(s[counter])
+                    elif s[counter]==')':
+                        if lastOpened[-1]!='(':
+                            haveError=True
+                            break
+                        else:
+                            lastOpened.pop()
+                    elif s[counter]==']':
+                        if lastOpened[-1]!='[':
+                            haveError=True
+                            break
+                        else:
+                            lastOpened.pop()
+                    elif s[counter]=='}':
+                        if lastOpened[-1]!='{':
+                            haveError=True
+                            break
+                        else:
+                            lastOpened.pop()
+                    counter+=1
+                    
+
+                if haveError:
+                    return 'NO'
+                else:
+                    return 'YES'
+            else:
+                print('end is opened')
+                return 'NO'
+                    
+        else:
+            print('start is not closed')
+            return 'NO'
+    else:
+        print('not even')
+        return 'NO'
+
+if __name__ == '__main__':
+    fptr = open(os.environ['OUTPUT_PATH'], 'w')
+
+    t = int(input().strip())
+
+    for t_itr in range(t):
+        s = input()
+
+        result = isBalanced(s)
+
+        fptr.write(result + '\n')
+
+    fptr.close()
