@@ -1,0 +1,26 @@
+# Enter your code here. Read input from STDIN. Print output to STDOUT
+
+#the input is query which is 1, 2, 3
+
+q=int(input())
+stackpush=[]
+stackdel=[]
+#print(q)
+for query in range(q):
+    splitList=list(input().split())
+    #print(type(splitList[0]))
+    if splitList[0]=='1':
+        stackpush.append(splitList[1])
+        #print('stackpush after append:',stackpush)
+    elif splitList[0]=='2':
+        if not stackdel:
+            stackdel=[item for item in stackpush][::-1]
+            stackpush=[]
+        stackdel.pop()
+        #print('stackdel after pop:',stackdel)
+    else:
+        if not stackdel:
+            stackdel=[item for item in stackpush][::-1]
+            stackpush=[]
+        #print('first to out: ',stackdel)
+        print(stackdel[-1])
