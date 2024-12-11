@@ -1,0 +1,31 @@
+# Enter your code here. Read input from STDIN. Print output to STDOUT
+#type(input())
+q=int(input())
+s=''
+lastOperation=''
+lastOperationDetails=''
+sCopy=[]
+for query in range(q):
+    splitList=list(input().split())
+    if splitList[0]=='1':
+        sCopy.append(str(s))
+        #print(s)
+        s=s+splitList[1]
+        #lastOperation='1'
+        #lastOperationDetails=splitList[1]
+        
+    elif splitList[0]=='2':
+        sCopy.append(str(s))
+        #print(s)
+        s=s[:(len(s)-int(splitList[1]))]
+        #print(s)
+        #lastOperation='2'
+        #lastOperationDetails=splitList[1]
+    elif splitList[0]=='3':
+        #print(s)
+        print(s[int(splitList[1])-1:int(splitList[1])])
+    else:
+        s=sCopy[-1]
+        sCopy.pop()
+            
+        
