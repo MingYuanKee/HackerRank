@@ -1,0 +1,62 @@
+#!/bin/python3
+
+import math
+import os
+import random
+import re
+import sys
+
+#
+# Complete the 'noPrefix' function below.
+#
+# The function accepts STRING_ARRAY words as parameter.
+#
+class TrieNode:
+    def __init__(self):
+        self.children = {}
+        self.is_end_of_word = False
+
+
+def noPrefix(words):
+    # Write your code here
+    output='GOOD SET'
+    wordError=''
+    root = TrieNode()
+    for word in words:
+        node=root
+        for character in word:
+            #moving and creating the tree
+            if character not in node.children:
+                node.children[character]=TrieNode()
+                node=node.children[character]
+            else:
+                node=node.children[character]
+            #if existing word is 'aac' and current word is 'aach', catch
+            if node.is_end_of_word: 
+                output='BAD SET'
+                wordError=word
+                print(output)
+                print(wordError)
+                return
+        node.is_end_of_word=True
+        #if current word is 'acc' but there are existing words like 'acca', catch
+        if node.children:
+            output='BAD SET'
+            wordError=word
+            print(output)
+            print(wordError)
+            return
+    #will run this only if its 'Good Set'
+    print(output)
+    print(wordError)
+
+if __name__ == '__main__':
+    n = int(input().strip())
+
+    words = []
+
+    for _ in range(n):
+        words_item = input()
+        words.append(words_item)
+
+    noPrefix(words)
