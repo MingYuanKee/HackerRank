@@ -1,0 +1,55 @@
+#!/bin/python3
+
+import math
+import os
+import random
+import re
+import sys
+
+#
+# Complete the 'noPrefix' function below.
+#
+# The function accepts STRING_ARRAY words as parameter.
+#
+
+def noPrefix(words):
+    # Write your code here
+    counter=0
+    output='GOOD SET'
+    wordError=''
+    errorDict={}
+    while counter<len(words) and output=='GOOD SET':
+        for word in words[counter+1:]:
+            if len(words[counter])<=len(word):
+                if words[counter]==word[:len(words[counter])]:
+                    if len(errorDict)>0:
+                        if words.index(word)<words.index(list(errorDict.values())[-1]):
+                            if words.index(words[counter])< words.index(word):
+                                errorDict[words[counter]]=word
+                    else:
+                        errorDict[words[counter]]=word
+            else:
+                if words[counter][:len(word)]==word:
+                    if len(errorDict)>0:
+                        if words.index(word)<words.index(list(errorDict.values())[-1]):
+                            if words.index(words[counter])< words.index(word):
+                                errorDict[words[counter]]=word
+                    else:
+                        errorDict[words[counter]]=word
+        counter+=1
+    if len(errorDict)>0:
+        output='BAD SET'
+        wordError=list(errorDict.values())[-1] 
+    print(output)
+    print(wordError)
+
+if __name__ == '__main__':
+    n = int(input().strip())
+
+    words = []
+
+    for _ in range(n):
+        words_item = input()
+        words.append(words_item)
+
+    noPrefix(words)
