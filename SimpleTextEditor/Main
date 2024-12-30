@@ -1,10 +1,10 @@
 # Enter your code here. Read input from STDIN. Print output to STDOUT
 #type(input())
 q=int(input())
-s=''
+s='' #s is actual value of string
 lastOperation=''
 lastOperationDetails=''
-sCopy=[]
+sCopy=[] #snap shot of each value s has been
 for query in range(q):
     splitList=list(input().split())
     if splitList[0]=='1':
