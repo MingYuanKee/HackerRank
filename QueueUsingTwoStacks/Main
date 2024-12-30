@@ -14,6 +14,7 @@ for query in range(q):
         #print('stackpush after append:',stackpush)
     elif splitList[0]=='2':
         if not stackdel:
+            #[::-1] is to reverse the items/characters in list/string
             stackdel=[item for item in stackpush][::-1]
             stackpush=[]
         stackdel.pop()
