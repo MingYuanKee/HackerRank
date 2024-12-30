@@ -26,6 +26,7 @@ def caesarCipher(s, k):
         if character.isalpha():
             if character.isupper():
                 alphabetIndex=alphabet_big.index(character)
+                #%len(alphabet_big) means to 'wrap around' in the event the index exceed
                 stringlist[index]=alphabet_big[(alphabetIndex+k)%len(alphabet_big)]
             elif character.islower():
                 alphabetIndex=alphabet_small.index(character)
