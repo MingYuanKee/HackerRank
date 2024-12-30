@@ -18,6 +18,7 @@ def gridChallenge(grid):
     print('start')
     alphabeticalFlag=True
     for index,item in enumerate(grid):
+        #sorted() is sorting in alphabetical order
         if item != ''.join(sorted(item)):
             grid[index]=''.join(sorted(item))
     for index in range(len(grid[0])):
