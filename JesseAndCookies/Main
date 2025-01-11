@@ -26,7 +26,9 @@ def cookies(k, A):
             counter=-1
             break
         else:
-            # Extract the two smallest elements
+            # heapq do not sort the elements, it only ensures the smallest element is at index 0
+            # If you remove the elements one by one, it ensures each step the element at index 0
+            # is the smallest
             first = heapq.heappop(A)
             second = heapq.heappop(A)
             
